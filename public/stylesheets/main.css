@@ -1,0 +1,58 @@
+.thumbnail img {
+    width: 100%;
+}
+
+.thumbnail {
+    padding: 0;
+}
+
+.thumbnail .caption-full {
+    padding: 9px;
+}
+
+#delete-form{
+    display: inline;
+}
+
+.delete-form{
+    display: inline;
+}
+
+.checked{
+	color: orange;
+}
+
+.margin-center {
+	background-color: lightgrey;
+	height: 225px;
+	margin-top: 10%;
+	padding-bottom: 1%;
+	border-radius:20px;
+	-moz-border-radius:20px;
+	-webkit-border-radius:20px;
+}
+
+.btn-center{
+	margin-left: 40%;
+	margin-right: auto;
+}
+
+.margin-top{
+	margin-top: 5%;
+}
+
+.mb-1 {
+	margin-bottom: 4%;
+}
+
+.mt-5{
+	margin-top: 10px;
+}
+
+.p-0{
+	padding: 0;
+}
+
+.pb-5{
+	padding-bottom: 5px;
+}
