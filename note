@@ -1,0 +1,9 @@
+//local c9 database
+// console.log(process.env.DATABASEURL);
+// mongoose.connect("mongodb://localhost/yelp_camp_v10");
+// mongoose.connect(process.env.DATABASEURL);
+
+// YelpCamp-DeployApp -> Database name
+//admin : admin -> username password in mongodb Atlas
+//mongoatlas database
+// mongoose.connect("mongodb+srv://admin:admin@cluster0-bizty.mongodb.net/YelpCamp-DeployApp?retryWrites=true&w=majority", {useNewUrlParser: true});

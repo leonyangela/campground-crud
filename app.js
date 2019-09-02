@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 var express     = require("express"),
     app         = express(),
     bodyParser  = require("body-parser"),
@@ -19,16 +21,8 @@ var commentRoutes    = require("./routes/comments"),
     campgroundRoutes = require("./routes/campgrounds"),
     indexRoutes      = require("./routes/index");
   
- //local c9 database
-// console.log(process.env.DATABASEURL);
-// mongoose.connect("mongodb://localhost/yelp_camp_v10");
-// mongoose.connect(process.env.DATABASEURL);
-
-// YelpCamp-DeployApp -> Database name
-//admin : admin -> username password in mongodb Atlas
-//mongoatlas database
-// mongoose.connect("mongodb+srv://admin:admin@cluster0-bizty.mongodb.net/YelpCamp-DeployApp?retryWrites=true&w=majority", {useNewUrlParser: true});
-mongoose.connect("mongodb+srv://admin:admin@cluster0-bizty.mongodb.net/YelpCamp-DeployApp?retryWrites=true&w=majority", {
+ 
+mongoose.connect(process.env.MONGODB_URL, {
 	useNewUrlParser: true,
 	useCreateIndex: true
 }).then(() => {
@@ -66,8 +60,6 @@ app.use(function(req, res, next){
    res.locals.success = req.flash("success");
    next();
 });
-
-
 
 app.use("/", indexRoutes);
 app.use("/campgrounds", campgroundRoutes);

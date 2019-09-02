@@ -7,14 +7,19 @@ var middleware = require("../middleware");
 // no need to /index.js because index.js is a special name
 // so it will be include automatically
 
+// MAPBOX
+const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
+const geocodingClient = mbxGeocoding({ accessToken: process.env.MAPBOX_TOKEN });
+
+
 //INDEX - show all campgrounds
 router.get("/", function(req, res){
-    // Get all campgrounds from DB
+    //Get all campgrounds from DB
 	var perPage = 8;
 	var pageQuery = parseInt(req.query.page);
 	var pageNumber = pageQuery ? pageQuery : 1;
 	
-    Campground.find({}).skip((perPage * pageNumber) - perPage).limit(perPage).exec(function(err, allCampgrounds){
+	Campground.find({}).skip((perPage * pageNumber) - perPage).limit(perPage).exec(function(err, allCampgrounds){
 		Campground.count().exec(function(err, count){
 		   if(err){
 			   console.log(err);
@@ -26,11 +31,12 @@ router.get("/", function(req, res){
 			  });  //RES.RENDER
 			}
 		});
-    });
+	});
+	
 });
 
 //CREATE - add new campground to DB
-router.post("/", middleware.isLoggedIn, function(req, res){
+router.post("/", middleware.isLoggedIn, async function(req, res, next){
     // get data from form and add to campgrounds array
     var name = req.body.name;
     var price = req.body.price;
@@ -40,17 +46,23 @@ router.post("/", middleware.isLoggedIn, function(req, res){
         id: req.user._id,
         username: req.user.username
     };
-    var newCampground = { name: name, price: price, image: image, description: desc, author:author };
-    // Create a new campground and save to DB
-    Campground.create(newCampground, function(err, newlyCreated){
-        if(err){
-            console.log(err);
-        } else {
-            //redirect back to campgrounds page
-            console.log(newlyCreated);
-            res.redirect("/campgrounds");
-        }
-    });
+			
+	var newCampground = { name: name, price: price, image: image, description: desc, author: author};
+	// Create a new campground and save to DB
+	Campground.create(newCampground, function(err, newlyCreated, location){
+		if(err){
+			console.log(err);
+		} else {
+			
+			//redirect back to campgrounds page
+			console.log(newlyCreated);
+			res.redirect("/campgrounds");
+		}
+	});
+	
+	
+	
+	
 });
 
 //NEW - show form to create new campground
@@ -84,14 +96,14 @@ router.get("/:id/edit", middleware.checkCampgroundOwnership, function(req, res) 
 
 //UPDATE
 router.put("/:id", middleware.checkCampgroundOwnership,function(req, res) {
-    //find and update the correct campground
-    Campground.findByIdAndUpdate(req.params.id, req.body.campground, req.body.campground.rating, function(err, updatedCampground){
-       if(err){
-           res.redirect("/campgrounds");
-       } else {
-           res.redirect("/campgrounds/" + req.params.id);
-       }
-    });
+	//find and update the correct campground
+	Campground.findByIdAndUpdate(req.params.id, req.body.campground, req.body.campground.rating, function(err, updatedCampground){
+	if(err){
+		res.redirect("/campgrounds");
+		} else {
+		res.redirect("/campgrounds/" + req.params.id);
+		}
+	});
 });
 
 //destroy route
@@ -124,8 +136,6 @@ router.delete("/:id", middleware.checkCampgroundOwnership, function (req, res) {
 
 
 module.exports = router;
-
-
 
 //EDIT before middleware
 // router.get("/:id/edit", checkCampgroundOwnership, function(req, res) {

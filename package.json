@@ -10,8 +10,10 @@
   "author": "Colt Steele",
   "license": "ISC",
   "dependencies": {
+    "@mapbox/mapbox-sdk": "^0.6.0",
     "body-parser": "^1.14.1",
     "connect-flash": "^0.1.1",
+    "dotenv": "^8.0.0",
     "ejs": "^2.3.4",
     "express": "^4.13.3",
     "express-session": "^1.11.3",
@@ -19,6 +21,7 @@
     "moment": "^2.24.0",
     "mongodb": "^3.2.7",
     "mongoose": "^5.4.14",
+    "node-geocoder": "^3.23.0",
     "nodemon": "^1.19.1",
     "passport": "^0.3.0",
     "passport-local": "^1.0.0",
