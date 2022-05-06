@@ -4,10 +4,7 @@
 }
 
 .thumbnail img {
-    /* width: 100%; */
-	object-fit: cover;
-    height: 150px;
-    background-size: cover;
+    width: 100%;
 }
 
 .thumbnail {
@@ -34,6 +31,9 @@
 	margin-bottom: 0 !important;
 }
 
+.container  {
+	margin-top: 20px;
+}
 
 .margin-center {
 	background-color: lightgrey;
