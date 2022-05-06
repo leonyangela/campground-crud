@@ -1,18 +1,18 @@
-<% include ./partials/header %> 
+<%- include ('./partials/header') %>
 
-<div class="container">
-	<div class="col-xs-3 col-md-4"></div>
-	
-	<div class="col-xs-6 col-md-4 margin-center">
-		<h1 class="text-center mb-1">Sign Up!</h1>
+	<div class="container">
+		<div class="col-xs-3 col-md-4"></div>
+
+		<div class="col-xs-6 col-md-4 margin-center">
+			<h1 class="text-center mb-1">Sign Up!</h1>
 			<form action="/register" method="post">
 				<input type="text" class="form-control mt-5" name="username" placeholder="username">
 				<input type="password" class="form-control mt-5" name="password" placeholder="password">
 				<input type="submit" class="btn btn-primary btn-center mt-5" value="Sign Up">
 			</form>
+		</div>
+
+		<div class="col-xs-3 col-md-4"></div>
 	</div>
 
-	<div class="col-xs-3 col-md-4"></div>
-</div>
-
-<% include ./partials/footer %> 
+<%- include ('./partials/footer') %>
