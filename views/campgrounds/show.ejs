@@ -1,4 +1,4 @@
-<% include ../partials/header %>
+<%- include ('../partials/header') %>
 
 <!-- 	Mapbox	 -->
 		<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.js'></script>
@@ -164,9 +164,9 @@ mapboxgl.accessToken='<%= process.env.MAPBOX_TOKEN %>';
 	
 var map = new mapboxgl.Map({
   container: 'map',
-  style: 'mapbox://styles/mapbox/light-v10',
-  center: [-96, 37.8],
-  zoom: 3
+  style: 'mapbox://styles/gudetama/cjz83wp3e0hpo1cmebki65752',
+  center: [-126, 37.8],
+  zoom: 2
 });
 
 var geojson = {
@@ -212,4 +212,4 @@ geojson.features.forEach(function(marker) {
 
 </script>
 
-<% include ../partials/footer %>
+<%- include ('../partials/footer') %>
